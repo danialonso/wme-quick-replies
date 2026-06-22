@@ -39,6 +39,8 @@ so you can answer reporters with one click instead of retyping the same messages
 3. Edit your templates anytime from the **💬 Quick Replies** tab in the WME left sidebar
    (Scripts section). Click **Save**.
 
+![Quick replies dropdown in an Update Request](screenshots/usage.png)
+
 ### The problem-type token
 
 | Language | Token to write in your template |
@@ -50,6 +52,22 @@ so you can answer reporters with one click instead of retyping the same messages
 | Deutsch  | `**Problemtyp**`                |
 
 When you insert the reply, the token is replaced with the real UR type shown in the panel.
+
+## Settings
+
+You can personalise all 5 reply templates **without touching the code**, from the
+**💬 Quick Replies** tab inside WME:
+
+1. Open the **left sidebar** in WME and go to the **Scripts** section.
+2. Select the **💬 Quick Replies** tab.
+3. Edit any of the 5 text boxes and click **Save**.
+   - Leave a box **empty** to hide that reply from the dropdown.
+   - Use **Restore defaults** to reset the templates to the defaults for your language.
+
+Tip: this is also where you add the [problem-type token](#the-problem-type-token) to a
+template so it gets replaced with the real UR type.
+
+![Quick Replies settings tab in WME](screenshots/settings.png)
 
 ## Language detection
 
