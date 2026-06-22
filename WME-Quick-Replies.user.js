@@ -2,7 +2,7 @@
 // @name         WME Quick Replies
 // @name:es      WME Respuestas rápidas
 // @namespace    https://github.com/danialonso/wme-quick-replies
-// @version      1.8.1
+// @version      1.8.3
 // @description  Quick reply templates for Update Requests in Waze Map Editor. Auto-detects EN/ES/FR/PT/DE and inserts the actual UR problem type.
 // @description:es Plantillas de respuestas rápidas para las Solicitudes de actualización (UR) del Waze Map Editor. Detecta el idioma (EN/ES/FR/PT/DE) e inserta el tipo de problema real de la UR.
 // @author       'osZONE' in Waze, 'Dani Alonso' in real world! :) https://www.linkedin.com/in/daalonso/
@@ -384,17 +384,46 @@
     return btn;
   }
 
+  // ¿Es el <wz-textarea> del CAMPO DE COMENTARIO de la UR?
+  // Evita colocar el botón en otros campos (p. ej. "Descripción", maxlength 300).
+  function isCommentHost(host) {
+    if (!host || (host.tagName || '').toLowerCase() !== 'wz-textarea') return false;
+    // 1) Clase específica del compositor de comentarios
+    if (host.classList && host.classList.contains('new-comment-text')) return true;
+    // 2) Placeholder de "comentario" (multiidioma)
+    const ph = (host.getAttribute('placeholder') || '').toLowerCase();
+    if (/coment|comment|kommentar|commentaire|conversa/.test(ph)) return true;
+    // 3) Botón de enviar adyacente (solo el compositor de comentarios lo tiene)
+    const parent = host.parentElement;
+    if (parent && parent.querySelector && parent.querySelector('.send-button, wz-button[type="submit"]')) return true;
+    return false;
+  }
+
+  // Acepta el contenedor del contador solo si pertenece al wz-textarea del comentario.
+  function isCommentStatusContainer(container) {
+    const rootNode = container.getRootNode ? container.getRootNode() : null;
+    const host = rootNode && rootNode.host;
+    if (host) return isCommentHost(host);
+    const near = container.closest && container.closest('wz-textarea'); // DOM claro
+    return isCommentHost(near);
+  }
+
   function isUrCommentField(el) {
     if (el.closest && el.closest('.qr-settings')) return false;
+    // Si el textarea pertenece a un wz-textarea de comentario
+    const host = (el.getRootNode && el.getRootNode().host) || (el.closest && el.closest('wz-textarea'));
+    if (isCommentHost(host)) return true;
+    // Atributos directos del propio campo
     const attrs = [
       el.getAttribute('placeholder'),
       el.getAttribute('aria-label'),
       el.getAttribute('data-placeholder')
     ].join(' ').toLowerCase();
     if (/coment|comment|kommentar|commentaire|conversa/.test(attrs)) return true;
+    // Último recurso: límite de caracteres ALTO (evita el de "Descripción" = 300)
     if (el.tagName === 'TEXTAREA') {
       const ml = el.maxLength;
-      if (typeof ml === 'number' && ml >= 200 && ml <= 5000) return true;
+      if (typeof ml === 'number' && ml >= 1000 && ml <= 5000) return true;
     }
     return false;
   }
@@ -440,6 +469,7 @@
       try { containers = root.querySelectorAll('.status-text-container'); } catch (e) { return; }
       for (const container of containers) {
         if (container.closest && container.closest('.qr-settings')) continue;
+        if (!isCommentStatusContainer(container)) continue; // solo el campo de comentario
         const ta = findTextareaFor(container);
         if (!ta) continue;
         placedBtn = ensureInStatusContainer(container, ta);
@@ -461,7 +491,16 @@
   }
 
   let scanTimer = null;
-  function scheduleScan() {
+  // Una mutación es "del mapa" si ocurre dentro del lienzo/tiles. Las ignoramos:
+  // el mapa cambia constantemente al navegar y no afecta a los paneles de UR.
+  function isMapMutation(m) {
+    const t = m.target;
+    if (!t || !t.closest) return false;
+    return !!t.closest('#WazeMap, .leaflet-container, .olMap, canvas, svg');
+  }
+  function scheduleScan(mutations) {
+    // Si TODAS las mutaciones son del mapa, no rastreamos (evita el recorrido continuo).
+    if (mutations && mutations.length && mutations.every(isMapMutation)) return;
     if (scanTimer) return;
     scanTimer = setTimeout(() => { scanTimer = null; scan(); }, 400);
   }
@@ -470,8 +509,10 @@
     injectStyles();
     scan();
     new MutationObserver(scheduleScan).observe(document.body, { childList: true, subtree: true });
-    setInterval(scan, 2000);
-    console.log('[WME Quick Replies] cargado ✔ (v1.8.1 — idioma: ' + LANG + ')');
+    // Red de seguridad por si React quita el botón dentro del Shadow DOM (el observador
+    // del body no ve cambios internos de los shadow roots). Es O(1) si el botón sigue puesto.
+    setInterval(scan, 3000);
+    console.log('[WME Quick Replies] cargado ✔ (v1.8.3 — idioma: ' + LANG + ')');
   }
 
   /* ------------------------------------------------------------------ *
