@@ -2,7 +2,7 @@
 // @name         WME Quick Replies
 // @name:es      WME Respuestas rápidas
 // @namespace    https://github.com/danialonso/wme-quick-replies
-// @version      2.1.0
+// @version      2.1.1
 // @description  Quick reply templates for Update Requests in Waze Map Editor. Unlimited replies, Normal/SuperFast modes, JSON import/export. Auto-detects EN/ES/FR/PT/DE and inserts the actual UR problem type.
 // @description:es Plantillas de respuestas rápidas para las Solicitudes de actualización (UR) del Waze Map Editor. Respuestas ilimitadas, modos Normal/SuperFast, importar/exportar JSON. Detecta el idioma (EN/ES/FR/PT/DE) e inserta el tipo de problema real de la UR.
 // @author       'osZONE' in Waze, 'Dani Alonso' in real world! :) https://www.linkedin.com/in/daalonso/
@@ -21,7 +21,7 @@
 (function () {
   'use strict';
 
-  const SCRIPT_VERSION = '2.1.0';
+  const SCRIPT_VERSION = '2.1.1';
 
   /* ------------------------------------------------------------------ *
    *  Idioma  ·  Language
@@ -53,8 +53,8 @@
       modeHeading: 'Mode', modeNormal: 'Normal', modeSuperFast: 'SuperFast',
       modeHelp: '<strong>Normal</strong>: a single button opens a dropdown with all replies. <strong>SuperFast</strong>: each reply is shown as its own button (emoji + title), so one click is enough.',
       icon: 'Icon', title: 'Title', text: 'Reply',
-      iconPh: '😀', titlePh: 'Short title for the button', textPh: 'Reply text…',
-      emojiPick: 'Pick an emoji', emojiNone: 'No icon', emojiSearch: 'Search…', emojiNoResults: 'No emoji found.',
+      titlePh: 'Short title for the button', textPh: 'Reply text…',
+      emojiPick: 'Pick an emoji', emojiNone: 'No icon',
       emojiCats: { traffic: 'Traffic & map', status: 'Status', faces: 'Faces', hands: 'Hands', objects: 'Objects', misc: 'Misc' },
       addReply: '+ Add more replies', removeReply: 'Remove', removeConfirm: 'Remove this reply?',
       moveUp: 'Move up', moveDown: 'Move down',
@@ -64,7 +64,6 @@
       exported: '⬇ Configuration exported.', imported: '⬆ Configuration imported successfully.',
       importError: '✖ That file is not a valid Quick Replies configuration.',
       resetConfirm: 'Restore the default templates?\n\nThis will permanently delete ALL your replies, titles, icons and the selected mode. This cannot be undone.\n\nTip: export your configuration first if you want a backup.',
-      unsaved: '⚠ You have unsaved changes.',
       untitled: 'Reply'
     },
     es: {
@@ -77,8 +76,8 @@
       modeHeading: 'Modo', modeNormal: 'Normal', modeSuperFast: 'SuperFast',
       modeHelp: '<strong>Normal</strong>: un único botón abre un desplegable con todas las respuestas. <strong>SuperFast</strong>: cada respuesta se muestra como su propio botón (emoji + título), así basta un clic.',
       icon: 'Icono', title: 'Título', text: 'Respuesta',
-      iconPh: '😀', titlePh: 'Título corto para el botón', textPh: 'Texto de la respuesta…',
-      emojiPick: 'Elegir un emoji', emojiNone: 'Sin icono', emojiSearch: 'Buscar…', emojiNoResults: 'Ningún emoji encontrado.',
+      titlePh: 'Título corto para el botón', textPh: 'Texto de la respuesta…',
+      emojiPick: 'Elegir un emoji', emojiNone: 'Sin icono',
       emojiCats: { traffic: 'Tráfico y mapa', status: 'Estado', faces: 'Caras', hands: 'Manos', objects: 'Objetos', misc: 'Varios' },
       addReply: '+ Añadir más respuestas', removeReply: 'Eliminar', removeConfirm: '¿Eliminar esta respuesta?',
       moveUp: 'Subir', moveDown: 'Bajar',
@@ -88,7 +87,6 @@
       exported: '⬇ Configuración exportada.', imported: '⬆ Configuración importada correctamente.',
       importError: '✖ Ese archivo no es una configuración válida de Respuestas rápidas.',
       resetConfirm: '¿Restaurar las plantillas predefinidas?\n\nSe eliminarán definitivamente TODAS tus respuestas, títulos, iconos y el modo seleccionado. Esta acción no se puede deshacer.\n\nConsejo: exporta antes tu configuración si quieres una copia de seguridad.',
-      unsaved: '⚠ Tienes cambios sin guardar.',
       untitled: 'Respuesta'
     },
     fr: {
@@ -101,8 +99,8 @@
       modeHeading: 'Mode', modeNormal: 'Normal', modeSuperFast: 'SuperFast',
       modeHelp: '<strong>Normal</strong> : un seul bouton ouvre un menu avec toutes les réponses. <strong>SuperFast</strong> : chaque réponse devient son propre bouton (emoji + titre), un seul clic suffit.',
       icon: 'Icône', title: 'Titre', text: 'Réponse',
-      iconPh: '😀', titlePh: 'Titre court pour le bouton', textPh: 'Texte de la réponse…',
-      emojiPick: 'Choisir un emoji', emojiNone: 'Aucune icône', emojiSearch: 'Rechercher…', emojiNoResults: 'Aucun emoji trouvé.',
+      titlePh: 'Titre court pour le bouton', textPh: 'Texte de la réponse…',
+      emojiPick: 'Choisir un emoji', emojiNone: 'Aucune icône',
       emojiCats: { traffic: 'Trafic et carte', status: 'Statut', faces: 'Visages', hands: 'Mains', objects: 'Objets', misc: 'Divers' },
       addReply: '+ Ajouter des réponses', removeReply: 'Supprimer', removeConfirm: 'Supprimer cette réponse ?',
       moveUp: 'Monter', moveDown: 'Descendre',
@@ -112,7 +110,6 @@
       exported: '⬇ Configuration exportée.', imported: '⬆ Configuration importée avec succès.',
       importError: '✖ Ce fichier n\'est pas une configuration valide de Réponses rapides.',
       resetConfirm: 'Restaurer les modèles par défaut ?\n\nTOUTES vos réponses, titres, icônes et le mode sélectionné seront définitivement supprimés. Cette action est irréversible.\n\nConseil : exportez d\'abord votre configuration si vous souhaitez une sauvegarde.',
-      unsaved: '⚠ Vous avez des modifications non enregistrées.',
       untitled: 'Réponse'
     },
     pt: {
@@ -125,8 +122,8 @@
       modeHeading: 'Modo', modeNormal: 'Normal', modeSuperFast: 'SuperFast',
       modeHelp: '<strong>Normal</strong>: um único botão abre um menu com todas as respostas. <strong>SuperFast</strong>: cada resposta aparece como o seu próprio botão (emoji + título), basta um clique.',
       icon: 'Ícone', title: 'Título', text: 'Resposta',
-      iconPh: '😀', titlePh: 'Título curto para o botão', textPh: 'Texto da resposta…',
-      emojiPick: 'Escolher um emoji', emojiNone: 'Sem ícone', emojiSearch: 'Procurar…', emojiNoResults: 'Nenhum emoji encontrado.',
+      titlePh: 'Título curto para o botão', textPh: 'Texto da resposta…',
+      emojiPick: 'Escolher um emoji', emojiNone: 'Sem ícone',
       emojiCats: { traffic: 'Trânsito e mapa', status: 'Estado', faces: 'Caras', hands: 'Mãos', objects: 'Objetos', misc: 'Vários' },
       addReply: '+ Adicionar mais respostas', removeReply: 'Remover', removeConfirm: 'Remover esta resposta?',
       moveUp: 'Subir', moveDown: 'Descer',
@@ -136,7 +133,6 @@
       exported: '⬇ Configuração exportada.', imported: '⬆ Configuração importada com sucesso.',
       importError: '✖ Esse ficheiro não é uma configuração válida de Respostas rápidas.',
       resetConfirm: 'Restaurar os modelos predefinidos?\n\nTODAS as tuas respostas, títulos, ícones e o modo selecionado serão eliminados definitivamente. Esta ação não pode ser anulada.\n\nSugestão: exporta primeiro a tua configuração se quiseres uma cópia de segurança.',
-      unsaved: '⚠ Tens alterações por guardar.',
       untitled: 'Resposta'
     },
     de: {
@@ -149,8 +145,8 @@
       modeHeading: 'Modus', modeNormal: 'Normal', modeSuperFast: 'SuperFast',
       modeHelp: '<strong>Normal</strong>: Eine einzige Schaltfläche öffnet ein Menü mit allen Antworten. <strong>SuperFast</strong>: Jede Antwort wird als eigene Schaltfläche angezeigt (Emoji + Titel) – ein Klick genügt.',
       icon: 'Symbol', title: 'Titel', text: 'Antwort',
-      iconPh: '😀', titlePh: 'Kurzer Titel für die Schaltfläche', textPh: 'Antworttext…',
-      emojiPick: 'Emoji auswählen', emojiNone: 'Kein Symbol', emojiSearch: 'Suchen…', emojiNoResults: 'Kein Emoji gefunden.',
+      titlePh: 'Kurzer Titel für die Schaltfläche', textPh: 'Antworttext…',
+      emojiPick: 'Emoji auswählen', emojiNone: 'Kein Symbol',
       emojiCats: { traffic: 'Verkehr & Karte', status: 'Status', faces: 'Gesichter', hands: 'Hände', objects: 'Objekte', misc: 'Sonstiges' },
       addReply: '+ Weitere Antworten hinzufügen', removeReply: 'Entfernen', removeConfirm: 'Diese Antwort entfernen?',
       moveUp: 'Nach oben', moveDown: 'Nach unten',
@@ -160,7 +156,6 @@
       exported: '⬇ Konfiguration exportiert.', imported: '⬆ Konfiguration erfolgreich importiert.',
       importError: '✖ Diese Datei ist keine gültige Schnellantworten-Konfiguration.',
       resetConfirm: 'Standardvorlagen wiederherstellen?\n\nALLE deine Antworten, Titel, Symbole und der gewählte Modus werden endgültig gelöscht. Das kann nicht rückgängig gemacht werden.\n\nTipp: Exportiere vorher deine Konfiguration, wenn du eine Sicherung möchtest.',
-      unsaved: '⚠ Du hast ungespeicherte Änderungen.',
       untitled: 'Antwort'
     }
   };
@@ -186,169 +181,52 @@
   ];
 
   /* ------------------------------------------------------------------ *
+   *  Utilidades DOM
+   *  el() crea un elemento con propiedades, listeners e hijos de una vez.
+   * ------------------------------------------------------------------ */
+  function el(tag, opts, children) {
+    const node = document.createElement(tag);
+    const o = opts || {};
+    if (o.cls) node.className = o.cls;
+    if (o.text != null) node.textContent = o.text;
+    if (o.html != null) node.innerHTML = o.html;
+    if (o.title != null) node.title = o.title;
+    if (o.type) node.type = o.type;
+    if (o.attrs) for (const k in o.attrs) node.setAttribute(k, o.attrs[k]);
+    if (o.props) for (const k in o.props) node[k] = o.props[k];
+    if (o.css) Object.assign(node.style, o.css);
+    if (o.on) for (const evt in o.on) node.addEventListener(evt, o.on[evt]);
+    (children || []).forEach(c => { if (c) node.appendChild(c); });
+    return node;
+  }
+
+  const stop = (e) => e.stopPropagation();
+  const clone = (o) => JSON.parse(JSON.stringify(o));
+
+  // Coloca un panel flotante junto a un ancla sin salirse de la ventana.
+  function place(panel, rect, fallbackW) {
+    const w = panel.offsetWidth || fallbackW;
+    const h = panel.offsetHeight || 300;
+    let top = rect.bottom + 6;
+    if (top + h > window.innerHeight - 8) top = Math.max(8, rect.top - h - 6);
+    let left = rect.left;
+    if (left + w > window.innerWidth - 8) left = Math.max(8, window.innerWidth - w - 8);
+    panel.style.top = top + 'px';
+    panel.style.left = left + 'px';
+  }
+
+  /* ------------------------------------------------------------------ *
    *  Catálogo de emojis del selector
    *  Cada entrada: [emoji, 'palabras clave multiidioma para el buscador']
    * ------------------------------------------------------------------ */
   const EMOJI_CATS = [
-    { key: 'traffic', tab: '🚦', items: [
-      ['🚦', 'traffic light semaforo semaforo feu ampel'],
-      ['🚥', 'traffic light semaforo feu ampel'],
-      ['🛑', 'stop pare arret halt'],
-      ['🚧', 'works obras travaux baustelle construccion'],
-      ['🛣️', 'road carretera estrada route strasse autopista'],
-      ['🛤️', 'rail via voie schiene tren'],
-      ['🗺️', 'map mapa carte karte'],
-      ['📍', 'pin location ubicacion localizacion lieu ort'],
-      ['🧭', 'compass brujula bussola boussole kompass navegacion'],
-      ['🚗', 'car coche carro voiture auto'],
-      ['🚙', 'car suv coche voiture auto'],
-      ['🚕', 'taxi'],
-      ['🚌', 'bus autobus autocarro'],
-      ['🚚', 'truck camion camiao lkw'],
-      ['🛻', 'truck pickup camioneta'],
-      ['🏍️', 'motorbike moto motorrad'],
-      ['🛵', 'scooter moto'],
-      ['🚲', 'bike bici bicicleta velo fahrrad'],
-      ['🚶', 'pedestrian peaton peao pieton fussganger walk'],
-      ['🚏', 'bus stop parada arret haltestelle'],
-      ['🅿️', 'parking aparcamiento estacionamento parken'],
-      ['⛽', 'fuel gas gasolinera combustible tankstelle'],
-      ['🚨', 'emergency emergencia urgence notfall alerta'],
-      ['🚓', 'police policia polizei'],
-      ['🌉', 'bridge puente ponte pont brucke'],
-      ['🚇', 'metro subway ubahn'],
-      ['✈️', 'airport aeropuerto avion flughafen'],
-      ['⚓', 'port puerto porto hafen']
-    ]},
-    { key: 'status', tab: '✅', items: [
-      ['✅', 'ok done solved resuelto resolvido resolu erledigt bien'],
-      ['✔️', 'ok check tick correcto'],
-      ['☑️', 'checkbox marcado'],
-      ['❌', 'no error wrong mal falso falsch'],
-      ['✖️', 'no cancel cancelar'],
-      ['⚠️', 'warning aviso atencion attention warnung cuidado'],
-      ['❓', 'question pregunta duda info question frage'],
-      ['❔', 'question pregunta duda'],
-      ['❗', 'important importante wichtig'],
-      ['‼️', 'urgent urgente dringend'],
-      ['⏳', 'wait espera pending pendiente attente warten recordatorio'],
-      ['⌛', 'time tiempo timeout espera'],
-      ['⏰', 'alarm reminder recordatorio alarma wecker'],
-      ['🕐', 'clock hora reloj heure uhr'],
-      ['🔒', 'closed cerrado fechado ferme geschlossen bloqueado'],
-      ['🔓', 'open abierto aberto ouvert offen'],
-      ['🔁', 'repeat repetir wiederholen'],
-      ['🔄', 'update actualizar atualizar mise a jour aktualisieren'],
-      ['🆕', 'new nuevo novo nouveau neu'],
-      ['🆗', 'ok'],
-      ['🏁', 'finish final fin ende cierre'],
-      ['🎯', 'target objetivo cible ziel'],
-      ['⭐', 'star estrella etoile stern favorito'],
-      ['🌟', 'star estrella destacado'],
-      ['🔔', 'bell notification aviso notificacion glocke'],
-      ['🔕', 'mute silencio silenciado'],
-      ['📈', 'up subida mejora'],
-      ['📉', 'down bajada']
-    ]},
-    { key: 'faces', tab: '🙂', items: [
-      ['😀', 'smile sonrisa sorriso sourire lachen feliz'],
-      ['😃', 'smile sonrisa feliz'],
-      ['😄', 'happy feliz content'],
-      ['😁', 'grin sonrisa'],
-      ['😊', 'happy amable simpatico'],
-      ['🙂', 'smile sonrisa neutral'],
-      ['😉', 'wink guino clin zwinkern'],
-      ['😍', 'love amor gusta'],
-      ['🤩', 'wow genial toll'],
-      ['🤔', 'think pensar duda reflexion denken'],
-      ['🤨', 'doubt duda sospecha'],
-      ['😐', 'neutral neutro'],
-      ['😴', 'sleep dormir inactivo sin respuesta'],
-      ['😅', 'sweat nervios'],
-      ['😂', 'laugh risa rire lachen'],
-      ['🥳', 'party fiesta festa celebracion'],
-      ['😎', 'cool guay'],
-      ['🙃', 'upside irony ironia'],
-      ['😢', 'sad triste'],
-      ['😱', 'shock susto'],
-      ['🤖', 'bot robot script automatico'],
-      ['👤', 'user usuario utilisateur benutzer wazer']
-    ]},
-    { key: 'hands', tab: '👍', items: [
-      ['👍', 'thumbs up bien gracias ok daumen pouce'],
-      ['👎', 'thumbs down mal no'],
-      ['👌', 'ok perfecto'],
-      ['✋', 'stop mano hand main'],
-      ['🤚', 'hand mano'],
-      ['👏', 'clap aplauso applaudir gracias'],
-      ['🙌', 'celebrate celebracion gracias'],
-      ['🙏', 'thanks gracias obrigado merci danke por favor please'],
-      ['🤝', 'deal acuerdo colaboracion handshake'],
-      ['💪', 'strong fuerza animo'],
-      ['👋', 'hello hola ola salut hallo saludo bienvenida'],
-      ['👇', 'down abajo'],
-      ['👆', 'up arriba'],
-      ['👉', 'right derecha siguiente'],
-      ['👈', 'left izquierda'],
-      ['✍️', 'write escribir redactar schreiben'],
-      ['🤷', 'shrug no se unknown desconocido']
-    ]},
-    { key: 'objects', tab: '💬', items: [
-      ['💬', 'comment comentario comentario commentaire kommentar chat mensaje'],
-      ['🗨️', 'chat mensaje message'],
-      ['🗯️', 'shout queja'],
-      ['📝', 'note nota edit editar notiz'],
-      ['📄', 'document documento file archivo'],
-      ['📋', 'clipboard portapapeles lista'],
-      ['📌', 'pin chincheta fijar'],
-      ['📎', 'clip adjunto anexo'],
-      ['📢', 'announce anuncio aviso ankundigung'],
-      ['📣', 'megaphone aviso'],
-      ['📧', 'email correo mail'],
-      ['✉️', 'mail correo carta'],
-      ['📨', 'incoming mail correo recibido'],
-      ['📬', 'mailbox buzon'],
-      ['🔍', 'search buscar investigar recherche suchen revisar'],
-      ['🔎', 'search buscar zoom'],
-      ['💡', 'idea sugerencia tip vorschlag'],
-      ['🔧', 'fix arreglar reparar reparer reparieren'],
-      ['🛠️', 'tools herramientas ferramentas outils werkzeuge arreglado'],
-      ['⚙️', 'settings ajustes configuracion einstellungen'],
-      ['🧰', 'toolbox herramientas'],
-      ['📅', 'calendar calendario fecha date datum'],
-      ['📊', 'chart grafico datos'],
-      ['🔗', 'link enlace ligacao lien'],
-      ['📷', 'photo foto imagen bild'],
-      ['📱', 'phone movil telefono app'],
-      ['💻', 'computer ordenador editor pc']
-    ]},
-    { key: 'misc', tab: '✨', items: [
-      ['✨', 'sparkles nuevo brillo magia'],
-      ['🎉', 'party gracias celebracion festa'],
-      ['❤️', 'heart corazon amor gracias'],
-      ['💙', 'heart blue corazon azul waze'],
-      ['💚', 'heart green corazon verde'],
-      ['🧡', 'heart orange corazon naranja'],
-      ['🔥', 'fire urgente hot'],
-      ['💧', 'water agua lluvia inundacion'],
-      ['🌧️', 'rain lluvia chuva pluie regen'],
-      ['❄️', 'snow nieve neve neige schnee hielo'],
-      ['☀️', 'sun sol soleil sonne'],
-      ['🌍', 'world mundo europa africa'],
-      ['🌎', 'world mundo america'],
-      ['🌐', 'globe web internet global'],
-      ['🌳', 'tree arbol arvore arbre baum vegetacion'],
-      ['🏠', 'home casa hogar maison haus direccion'],
-      ['🏢', 'building edificio empresa lugar poi'],
-      ['🏗️', 'construction obra construccion baustelle'],
-      ['🚀', 'rocket rapido superfast schnell'],
-      ['🏆', 'trophy premio ganador'],
-      ['🎁', 'gift regalo'],
-      ['📦', 'box paquete caja'],
-      ['🧩', 'puzzle pieza problema'],
-      ['🗑️', 'trash borrar eliminar papelera']
-    ]}
-  ];
+    ['traffic', '🚦', '🚦🚥🛑🚧🛣️🛤️🗺️📍🧭🚗🚙🚕🚌🚚🛻🏍️🛵🚲🚶🚏🅿️⛽🚨🚓🌉🚇✈️⚓'],
+    ['status', '✅', '✅✔️☑️❌✖️⚠️❓❔❗‼️⏳⌛⏰🕐🔒🔓🔁🔄🆕🆗🏁🎯⭐🌟🔔🔕📈📉'],
+    ['faces', '🙂', '😀😃😄😁😊🙂😉😍🤩🤔🤨😐😴😅😂🥳😎🙃😢😱🤖👤'],
+    ['hands', '👍', '👍👎👌✋🤚👏🙌🙏🤝💪👋👇👆👉👈✍️🤷'],
+    ['objects', '💬', '💬🗨️🗯️📝📄📋📌📎📢📣📧✉️📨📬🔍🔎💡🔧🛠️⚙️🧰📅📊🔗📷📱💻'],
+    ['misc', '✨', '✨🎉❤️💙💚🧡🔥💧🌧️❄️☀️🌍🌎🌐🌳🏠🏢🏗️🚀🏆🎁📦🧩🗑️']
+  ].map(c => ({ key: c[0], tab: c[1], items: Array.from(c[2].matchAll(/\p{Extended_Pictographic}(?:\uFE0F)?/gu), m => m[0]) }));
 
   // Iconos y títulos predefinidos (comunes a todos los idiomas).
   const DEFAULT_ICONS = ['❓', '⏳', '✅', '🔒', '💬'];
@@ -418,6 +296,8 @@
     };
   }
 
+  const emptyReply = () => ({ icon: '💬', title: '', text: '' });
+
   function sanitizeReply(r, idx) {
     if (typeof r === 'string') {
       // Formato v1: sólo texto. Recuperamos icono/título predefinidos por posición.
@@ -427,7 +307,7 @@
         text: r
       };
     }
-    if (!r || typeof r !== 'object') return { icon: '💬', title: '', text: '' };
+    if (!r || typeof r !== 'object') return emptyReply();
     return {
       icon: typeof r.icon === 'string' ? r.icon.trim().slice(0, 4) : '',
       title: typeof r.title === 'string' ? r.title.trim().slice(0, 40) : '',
@@ -467,7 +347,7 @@
     if (MODES.indexOf(cfg.mode) === -1) cfg.mode = 'normal';
     if (!Array.isArray(cfg.replies)) cfg.replies = defaultReplies();
     cfg.replies = cfg.replies.map(sanitizeReply);
-    if (!cfg.replies.length) cfg.replies = [{ icon: '💬', title: '', text: '' }];
+    if (!cfg.replies.length) cfg.replies = [emptyReply()];
     return cfg;
   }
 
@@ -565,7 +445,7 @@
       .qr-mini[disabled] { opacity: .35; cursor: default; }
       .qr-mini.qr-del:hover { background: #ffecec; border-color: #e0a0a0; color: #a12; }
       .qr-row { display: flex; gap: 8px; margin-bottom: 6px; }
-      .qr-row .qr-col-icon { width: 86px; flex: none; }
+      .qr-row .qr-col-icon { width: 58px; flex: none; }
       .qr-row .qr-col-title { flex: 1; }
       .qr-field { margin-bottom: 4px; }
       .qr-field label, .qr-row label { display: block; font-weight: 600; margin-bottom: 3px; font-size: 11px; color: #555; }
@@ -573,14 +453,13 @@
         width: 100%; box-sizing: border-box; padding: 5px 8px;
         border: 1px solid #c7c7c7; border-radius: 6px; font-family: inherit; font-size: 12px;
       }
-      .qr-settings input.qr-icon-input { text-align: center; font-size: 16px; padding: 3px 4px; cursor: pointer; }
-      .qr-icon-box { display: flex; gap: 4px; align-items: center; }
-      .qr-icon-box input { flex: 1; min-width: 0; }
-      .qr-icon-open {
-        border: 1px solid #c7c7c7; background: #fff; border-radius: 6px; cursor: pointer;
-        font-size: 12px; line-height: 1; padding: 5px 6px; color: #1f3b7a;
+      .qr-icon-btn {
+        width: 100%; box-sizing: border-box; padding: 4px 6px; cursor: pointer;
+        border: 1px solid #c7c7c7; border-radius: 6px; background: #fff;
+        font-size: 18px; line-height: 1.4; text-align: center; font-family: inherit;
       }
-      .qr-icon-open:hover { background: #eef3ff; }
+      .qr-icon-btn:hover { background: #eef3ff; border-color: #1f3b7a; }
+      .qr-icon-btn.qr-icon-empty { color: #aaa; font-size: 15px; }
       .qr-emoji-pop {
         position: fixed; z-index: 1000000; width: 292px;
         background: #fff; border: 1px solid #c7c7c7; border-radius: 10px;
@@ -588,10 +467,6 @@
       }
       .qr-emoji-pop .qr-emoji-head { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
       .qr-emoji-pop .qr-emoji-head strong { flex: 1; font-size: 12px; color: #333; }
-      .qr-emoji-pop input.qr-emoji-search {
-        width: 100%; box-sizing: border-box; padding: 5px 8px; margin-bottom: 6px;
-        border: 1px solid #c7c7c7; border-radius: 6px; font-family: inherit; font-size: 12px;
-      }
       .qr-emoji-tabs { display: flex; gap: 3px; margin-bottom: 6px; flex-wrap: wrap; }
       .qr-emoji-tab {
         border: 1px solid transparent; background: #f1f1f1; border-radius: 6px; cursor: pointer;
@@ -613,7 +488,6 @@
         border: 1px solid #c7c7c7; background: #f1f1f1; color: #333; font-size: 12px; font-weight: 600;
       }
       .qr-emoji-none:hover { background: #e6e6e6; }
-      .qr-emoji-empty { grid-column: 1 / -1; color: #999; font-style: italic; font-size: 12px; padding: 8px 4px; }
       .qr-field textarea {
         width: 100%; box-sizing: border-box; min-height: 70px; resize: vertical;
         padding: 6px 8px; border: 1px solid #c7c7c7; border-radius: 6px;
@@ -717,47 +591,25 @@
     const menu = getMenu();
     menu.innerHTML = '';
     const replies = visibleReplies();
+
     replies.forEach((r, idx) => {
-      const item = document.createElement('div');
-      item.className = 'qr-item';
-      const preview = r.text.length > 90 ? r.text.slice(0, 90) + '…' : r.text;
-      const num = document.createElement('span');
-      num.className = 'qr-num';
-      num.textContent = (r.icon || (idx + 1) + '.');
-      item.appendChild(num);
       const title = (r.title || '').trim();
-      if (title) {
-        const tt = document.createElement('span');
-        tt.className = 'qr-title';
-        tt.textContent = title;
-        item.appendChild(tt);
-      }
-      item.appendChild(document.createTextNode(preview));
-      item.title = r.text;
-      item.addEventListener('click', (ev) => {
-        ev.stopPropagation();
-        applyReply(r.text, targetEl);
-        hideMenu();
-      });
+      const item = el('div', {
+        cls: 'qr-item', title: r.text,
+        on: { click: (ev) => { stop(ev); applyReply(r.text, targetEl); hideMenu(); } }
+      }, [
+        el('span', { cls: 'qr-num', text: r.icon || (idx + 1) + '.' }),
+        title ? el('span', { cls: 'qr-title', text: title }) : null,
+        document.createTextNode(r.text.length > 90 ? r.text.slice(0, 90) + '…' : r.text)
+      ]);
       menu.appendChild(item);
     });
-    if (!replies.length) {
-      const e = document.createElement('div');
-      e.className = 'qr-item qr-empty';
-      e.textContent = T.empty;
-      menu.appendChild(e);
-    }
-    const r = btn.getBoundingClientRect();
+
+    if (!replies.length) menu.appendChild(el('div', { cls: 'qr-item qr-empty', text: T.empty }));
+
     menu.style.visibility = 'hidden';
     menu.classList.remove('qr-hidden');
-    let top = r.bottom + 4;
-    const mh = menu.offsetHeight || 200;
-    if (top + mh > window.innerHeight - 8) top = Math.max(8, r.top - mh - 4);
-    let left = r.left;
-    const mw = menu.offsetWidth || 300;
-    if (left + mw > window.innerWidth - 8) left = Math.max(8, window.innerWidth - mw - 8);
-    menu.style.top = top + 'px';
-    menu.style.left = left + 'px';
+    place(menu, btn.getBoundingClientRect(), 300);
     menu.style.visibility = 'visible';
   }
 
@@ -769,51 +621,48 @@
    *  Colocación de los botones (auto-reparable)
    *  Estilos EN LÍNEA: pueden vivir dentro del Shadow DOM de wz-textarea.
    * ------------------------------------------------------------------ */
-  function styleButton(btn) {
-    Object.assign(btn.style, {
-      display: 'inline-flex', alignItems: 'center', gap: '5px', whiteSpace: 'nowrap',
-      padding: '3px 9px', border: '1px solid #c7c7c7', borderRadius: '13px',
-      background: '#f3f6ff', color: '#1f3b7a', cursor: 'pointer',
-      fontWeight: '600', fontSize: '11px', lineHeight: '1.3', userSelect: 'none',
-      fontFamily: 'inherit'
-    });
-    btn.addEventListener('mouseenter', () => { btn.style.background = '#e6ecff'; });
-    btn.addEventListener('mouseleave', () => { btn.style.background = '#f3f6ff'; });
-  }
+  const BTN_BG = '#f3f6ff';
+  const BTN_BG_HOVER = '#e6ecff';
 
-  function styleWrap(wrap) {
-    Object.assign(wrap.style, {
-      display: 'flex', flexWrap: 'wrap', gap: '4px', alignItems: 'center'
+  // Botón de la barra. Estilos EN LÍNEA porque puede vivir dentro de un Shadow DOM.
+  function makeBarButton(opts) {
+    const btn = el('div', {
+      cls: 'qr-btn', title: opts.title,
+      css: {
+        display: 'inline-flex', alignItems: 'center', gap: '5px', whiteSpace: 'nowrap',
+        padding: '3px 9px', border: '1px solid #c7c7c7', borderRadius: '13px',
+        background: BTN_BG, color: '#1f3b7a', cursor: 'pointer',
+        fontWeight: '600', fontSize: '11px', lineHeight: '1.3', userSelect: 'none',
+        fontFamily: 'inherit'
+      },
+      on: {
+        mouseenter: () => { btn.style.background = BTN_BG_HOVER; },
+        mouseleave: () => { btn.style.background = BTN_BG; },
+        click: (ev) => { stop(ev); opts.onClick(btn); }
+      }
     });
+    if (opts.html != null) btn.innerHTML = opts.html; else btn.textContent = opts.text;
+    return btn;
   }
 
   function makeDropdownButton(targetEl) {
-    const btn = document.createElement('div');
-    btn.className = 'qr-btn';
-    btn.innerHTML = T.button + ' <span style="font-size:10px">▾</span>';
-    styleButton(btn);
-    btn.addEventListener('click', (ev) => {
-      ev.stopPropagation();
-      const isOpen = qrMenu && !qrMenu.classList.contains('qr-hidden');
-      hideMenu();
-      if (!isOpen) openMenu(btn, targetEl);
+    return makeBarButton({
+      html: T.button + ' <span style="font-size:10px">▾</span>',
+      onClick: (btn) => {
+        const isOpen = qrMenu && !qrMenu.classList.contains('qr-hidden');
+        hideMenu();
+        if (!isOpen) openMenu(btn, targetEl);
+      }
     });
-    return btn;
   }
 
   function makeReplyButton(reply, idx, targetEl) {
-    const btn = document.createElement('div');
-    btn.className = 'qr-btn';
     const icon = (reply.icon || '').trim();
-    btn.textContent = (icon ? icon + ' ' : '') + replyLabel(reply, idx);
-    btn.title = reply.text;
-    styleButton(btn);
-    btn.addEventListener('click', (ev) => {
-      ev.stopPropagation();
-      hideMenu();
-      applyReply(reply.text, targetEl);
+    return makeBarButton({
+      text: (icon ? icon + ' ' : '') + replyLabel(reply, idx),
+      title: reply.text,
+      onClick: () => { hideMenu(); applyReply(reply.text, targetEl); }
     });
-    return btn;
   }
 
   // Registro de barras colocadas, para poder repintarlas al cambiar los ajustes.
@@ -821,18 +670,13 @@
 
   function renderBar(wrap, targetEl) {
     wrap.innerHTML = '';
-    styleWrap(wrap);
-    const cfg = loadConfig();
-    if (cfg.mode === 'superfast') {
-      const replies = visibleReplies();
-      if (!replies.length) {
-        wrap.appendChild(makeDropdownButton(targetEl));
-        return;
-      }
-      replies.forEach((r, i) => wrap.appendChild(makeReplyButton(r, i, targetEl)));
-    } else {
+    Object.assign(wrap.style, { display: 'flex', flexWrap: 'wrap', gap: '4px', alignItems: 'center' });
+    const replies = loadConfig().mode === 'superfast' ? visibleReplies() : [];
+    if (!replies.length) {
       wrap.appendChild(makeDropdownButton(targetEl));
+      return;
     }
+    replies.forEach((r, i) => wrap.appendChild(makeReplyButton(r, i, targetEl)));
   }
 
   function registerBar(wrap, targetEl) {
@@ -1013,144 +857,65 @@
    *  Selector de emojis (sin dependencias externas)
    * ------------------------------------------------------------------ */
   let emojiPop = null;
-  let emojiPopCleanup = null;
+  let emojiPopOff = null;
 
   function closeEmojiPicker() {
-    if (emojiPopCleanup) { emojiPopCleanup(); emojiPopCleanup = null; }
+    if (emojiPopOff) { emojiPopOff(); emojiPopOff = null; }
     if (emojiPop && emojiPop.parentNode) emojiPop.parentNode.removeChild(emojiPop);
     emojiPop = null;
-  }
-
-  function normalizeSearch(s) {
-    let out = String(s || '').toLowerCase();
-    if (out.normalize) out = out.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    return out.trim();
   }
 
   function openEmojiPicker(anchorEl, onPick) {
     closeEmojiPicker();
 
-    const pop = document.createElement('div');
-    emojiPop = pop;
-    pop.className = 'qr-emoji-pop';
-    pop.addEventListener('click', (e) => e.stopPropagation());
-    pop.addEventListener('mousedown', (e) => e.stopPropagation());
+    const grid = el('div', { cls: 'qr-emoji-grid' });
+    const tabs = el('div', { cls: 'qr-emoji-tabs' });
 
-    const head = document.createElement('div');
-    head.className = 'qr-emoji-head';
-    const title = document.createElement('strong');
-    title.textContent = T.emojiPick;
-    const closeBtn = document.createElement('button');
-    closeBtn.className = 'qr-mini';
-    closeBtn.type = 'button';
-    closeBtn.textContent = '✕';
-    closeBtn.addEventListener('click', closeEmojiPicker);
-    head.appendChild(title);
-    head.appendChild(closeBtn);
-    pop.appendChild(head);
-
-    const search = document.createElement('input');
-    search.type = 'text';
-    search.className = 'qr-emoji-search';
-    search.placeholder = T.emojiSearch;
-    pop.appendChild(search);
-
-    const tabs = document.createElement('div');
-    tabs.className = 'qr-emoji-tabs';
-    pop.appendChild(tabs);
-
-    const grid = document.createElement('div');
-    grid.className = 'qr-emoji-grid';
-    pop.appendChild(grid);
-
-    const noneBtn = document.createElement('button');
-    noneBtn.className = 'qr-emoji-none';
-    noneBtn.type = 'button';
-    noneBtn.textContent = '🚫 ' + T.emojiNone;
-    noneBtn.addEventListener('click', () => { onPick(''); closeEmojiPicker(); });
-    pop.appendChild(noneBtn);
-
-    let activeCat = 0;
-
-    function paintGrid() {
+    function show(catIdx) {
       grid.innerHTML = '';
-      const q = normalizeSearch(search.value);
-      let items;
-      if (q) {
-        items = [];
-        EMOJI_CATS.forEach(cat => {
-          cat.items.forEach(it => {
-            if (normalizeSearch(it[1]).indexOf(q) !== -1) items.push(it);
-          });
-        });
-      } else {
-        items = EMOJI_CATS[activeCat].items;
-      }
-      if (!items.length) {
-        const empty = document.createElement('div');
-        empty.className = 'qr-emoji-empty';
-        empty.textContent = T.emojiNoResults;
-        grid.appendChild(empty);
-        return;
-      }
-      items.forEach((it) => {
-        const b = document.createElement('button');
-        b.className = 'qr-emoji';
-        b.type = 'button';
-        b.textContent = it[0];
-        b.title = it[0];
-        b.addEventListener('click', () => { onPick(it[0]); closeEmojiPicker(); });
-        grid.appendChild(b);
+      EMOJI_CATS[catIdx].items.forEach((emoji) => {
+        grid.appendChild(el('button', {
+          cls: 'qr-emoji', type: 'button', text: emoji, title: emoji,
+          on: { click: () => { onPick(emoji); closeEmojiPicker(); } }
+        }));
       });
+      Array.prototype.forEach.call(tabs.children, (t, i) => t.classList.toggle('qr-on', i === catIdx));
     }
 
-    function paintTabs() {
-      tabs.innerHTML = '';
-      EMOJI_CATS.forEach((cat, i) => {
-        const t = document.createElement('button');
-        t.className = 'qr-emoji-tab' + (i === activeCat && !search.value ? ' qr-on' : '');
-        t.type = 'button';
-        t.textContent = cat.tab;
-        t.title = (T.emojiCats && T.emojiCats[cat.key]) || cat.key;
-        t.addEventListener('click', () => {
-          activeCat = i;
-          search.value = '';
-          paintTabs();
-          paintGrid();
-        });
-        tabs.appendChild(t);
-      });
-    }
+    EMOJI_CATS.forEach((cat, i) => {
+      tabs.appendChild(el('button', {
+        cls: 'qr-emoji-tab', type: 'button', text: cat.tab,
+        title: (T.emojiCats && T.emojiCats[cat.key]) || cat.key,
+        on: { click: () => show(i) }
+      }));
+    });
 
-    search.addEventListener('input', () => { paintTabs(); paintGrid(); });
-    search.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeEmojiPicker(); });
+    const pop = el('div', { cls: 'qr-emoji-pop', on: { click: stop, mousedown: stop } }, [
+      el('div', { cls: 'qr-emoji-head' }, [
+        el('strong', { text: T.emojiPick }),
+        el('button', { cls: 'qr-mini', type: 'button', text: '✕', on: { click: closeEmojiPicker } })
+      ]),
+      tabs,
+      grid,
+      el('button', {
+        cls: 'qr-emoji-none', type: 'button', text: '🚫 ' + T.emojiNone,
+        on: { click: () => { onPick(''); closeEmojiPicker(); } }
+      })
+    ]);
 
-    paintTabs();
-    paintGrid();
-
+    emojiPop = pop;
+    show(0);
     document.body.appendChild(pop);
+    place(pop, anchorEl.getBoundingClientRect(), 292);
 
-    // Posicionado junto al campo, sin salirse de la ventana.
-    const r = anchorEl.getBoundingClientRect();
-    const pw = pop.offsetWidth || 292;
-    const ph = pop.offsetHeight || 300;
-    let top = r.bottom + 6;
-    if (top + ph > window.innerHeight - 8) top = Math.max(8, r.top - ph - 6);
-    let left = r.left;
-    if (left + pw > window.innerWidth - 8) left = Math.max(8, window.innerWidth - pw - 8);
-    pop.style.top = top + 'px';
-    pop.style.left = left + 'px';
-
-    const onDocClick = () => closeEmojiPicker();
     const onKey = (e) => { if (e.key === 'Escape') closeEmojiPicker(); };
     setTimeout(() => {
-      document.addEventListener('click', onDocClick);
+      document.addEventListener('click', closeEmojiPicker);
       document.addEventListener('keydown', onKey);
       window.addEventListener('resize', closeEmojiPicker);
-      try { search.focus(); } catch (e) {}
     }, 0);
-    emojiPopCleanup = () => {
-      document.removeEventListener('click', onDocClick);
+    emojiPopOff = () => {
+      document.removeEventListener('click', closeEmojiPicker);
       document.removeEventListener('keydown', onKey);
       window.removeEventListener('resize', closeEmojiPicker);
     };
@@ -1163,16 +928,13 @@
     injectStyles();
     container.innerHTML = '';
 
-    const root = document.createElement('div');
-    root.className = 'qr-settings';
+    const root = el('div', { cls: 'qr-settings' });
     container.appendChild(root);
 
     // Copia de trabajo: no se persiste hasta pulsar Guardar.
-    let draft = JSON.parse(JSON.stringify(loadConfig()));
+    let draft = clone(loadConfig());
 
-    const status = document.createElement('div');
-    status.className = 'qr-status';
-
+    const status = el('div', { cls: 'qr-status' });
     function say(msg, kind) {
       status.className = 'qr-status' + (kind ? ' qr-' + kind : '');
       status.textContent = msg;
@@ -1180,255 +942,161 @@
       say._t = setTimeout(() => { status.textContent = ''; status.className = 'qr-status'; }, 4000);
     }
 
+    // Guarda el borrador y repinta; devuelve la config normalizada.
+    function commit(cfg, msg, kind) {
+      draft = clone(saveConfig(cfg));
+      build();
+      say(msg, kind);
+    }
+
+    function miniBtn(glyph, title, disabled, onClick, extraCls) {
+      return el('button', {
+        cls: 'qr-mini' + (extraCls ? ' ' + extraCls : ''), type: 'button',
+        text: glyph, title: title, props: { disabled: !!disabled }, on: { click: onClick }
+      });
+    }
+
+    function replyCard(reply, i) {
+      const swap = (a, b) => {
+        const tmp = draft.replies[a];
+        draft.replies[a] = draft.replies[b];
+        draft.replies[b] = tmp;
+        build();
+      };
+
+      // El icono sólo se elige desde el menú de emojis; no es editable a mano.
+      const iconBtn = el('button', {
+        cls: 'qr-icon-btn', type: 'button', title: T.emojiPick,
+        on: { click: (ev) => {
+          ev.preventDefault();
+          stop(ev);
+          openEmojiPicker(iconBtn, (emoji) => { reply.icon = emoji; paintIcon(); });
+        } }
+      });
+      function paintIcon() {
+        const cur = (reply.icon || '').trim();
+        iconBtn.textContent = cur || '＋';
+        iconBtn.classList.toggle('qr-icon-empty', !cur);
+      }
+      paintIcon();
+
+      const titleInput = el('input', {
+        type: 'text',
+        props: { maxLength: 40, placeholder: T.titlePh, value: reply.title || '' },
+        on: { input: () => { reply.title = titleInput.value; } }
+      });
+
+      const textarea = el('textarea', {
+        props: { placeholder: T.textPh, value: reply.text || '' },
+        on: { input: () => { reply.text = textarea.value; } }
+      });
+
+      return el('div', { cls: 'qr-card' }, [
+        el('div', { cls: 'qr-card-head' }, [
+          el('span', { cls: 'qr-idx', text: T.reply + ' ' + (i + 1) + ':' }),
+          miniBtn('▲', T.moveUp, i === 0, () => swap(i, i - 1)),
+          miniBtn('▼', T.moveDown, i === draft.replies.length - 1, () => swap(i, i + 1)),
+          miniBtn('✕', T.removeReply, false, () => {
+            if (!window.confirm(T.removeConfirm)) return;
+            draft.replies.splice(i, 1);
+            if (!draft.replies.length) draft.replies.push(emptyReply());
+            build();
+          }, 'qr-del')
+        ]),
+        el('div', { cls: 'qr-row' }, [
+          el('div', { cls: 'qr-col-icon' }, [el('label', { text: T.icon }), iconBtn]),
+          el('div', { cls: 'qr-col-title' }, [el('label', { text: T.title }), titleInput])
+        ]),
+        el('div', { cls: 'qr-field' }, [el('label', { text: T.text }), textarea])
+      ]);
+    }
+
+    function modeSelector() {
+      const box = el('div', { cls: 'qr-mode' });
+      MODES.forEach((m) => {
+        const radio = el('input', {
+          type: 'radio',
+          props: { name: 'qr-mode', value: m, checked: draft.mode === m },
+          on: { change: () => { if (radio.checked) draft.mode = m; } }
+        });
+        box.appendChild(el('label', {}, [
+          radio,
+          document.createTextNode(m === 'normal' ? T.modeNormal : T.modeSuperFast)
+        ]));
+      });
+      return box;
+    }
+
+    function importInput() {
+      const file = el('input', {
+        cls: 'qr-hidden', type: 'file', attrs: { accept: 'application/json,.json' },
+        on: { change: () => {
+          const f = file.files && file.files[0];
+          file.value = '';
+          if (!f) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            try {
+              const parsed = JSON.parse(String(reader.result));
+              const ok = Array.isArray(parsed) ||
+                (parsed && typeof parsed === 'object' && Array.isArray(parsed.replies));
+              if (!ok) throw new Error('bad');
+              commit(migrateConfig(parsed), T.imported);
+            } catch (e) {
+              say(T.importError, 'err');
+            }
+          };
+          reader.onerror = () => say(T.importError, 'err');
+          reader.readAsText(f);
+        } }
+      });
+      return file;
+    }
+
     function build() {
       root.innerHTML = '';
+      const file = importInput();
 
-      const head = document.createElement('div');
-      head.innerHTML = '<h3>' + T.heading + '</h3>' + '<p class="qr-help">' + T.help + '</p>';
-      root.appendChild(head);
+      root.appendChild(el('div', { html: '<h3>' + T.heading + '</h3><p class="qr-help">' + T.help + '</p>' }));
+      root.appendChild(el('h4', { text: T.modeHeading }));
+      root.appendChild(modeSelector());
+      root.appendChild(el('p', { cls: 'qr-help', html: T.modeHelp }));
 
-      /* --- Modo --------------------------------------------------- */
-      const modeH = document.createElement('h4');
-      modeH.textContent = T.modeHeading;
-      root.appendChild(modeH);
+      draft.replies.forEach((reply, i) => root.appendChild(replyCard(reply, i)));
 
-      const modeBox = document.createElement('div');
-      modeBox.className = 'qr-mode';
-      MODES.forEach((m) => {
-        const label = document.createElement('label');
-        const radio = document.createElement('input');
-        radio.type = 'radio';
-        radio.name = 'qr-mode';
-        radio.value = m;
-        radio.checked = draft.mode === m;
-        radio.addEventListener('change', () => { if (radio.checked) draft.mode = m; });
-        label.appendChild(radio);
-        label.appendChild(document.createTextNode(m === 'normal' ? T.modeNormal : T.modeSuperFast));
-        modeBox.appendChild(label);
-      });
-      root.appendChild(modeBox);
+      root.appendChild(el('button', {
+        cls: 'qr-add', type: 'button', text: T.addReply,
+        on: { click: () => { draft.replies.push(emptyReply()); build(); } }
+      }));
 
-      const modeHelp = document.createElement('p');
-      modeHelp.className = 'qr-help';
-      modeHelp.innerHTML = T.modeHelp;
-      root.appendChild(modeHelp);
+      root.appendChild(el('div', { cls: 'qr-actions' }, [
+        el('button', {
+          cls: 'qr-save', type: 'button', text: T.save,
+          on: { click: () => commit(draft, T.saved) }
+        })
+      ]));
 
-      /* --- Respuestas --------------------------------------------- */
-      draft.replies.forEach((reply, i) => {
-        const card = document.createElement('div');
-        card.className = 'qr-card';
+      root.appendChild(el('hr', { cls: 'qr-sep' }));
+      root.appendChild(el('h4', { text: T.dataHeading }));
+      root.appendChild(el('p', { cls: 'qr-help', text: T.dataHelp }));
 
-        const cardHead = document.createElement('div');
-        cardHead.className = 'qr-card-head';
-        const idxLabel = document.createElement('span');
-        idxLabel.className = 'qr-idx';
-        idxLabel.textContent = T.reply + ' ' + (i + 1) + ':';
-        cardHead.appendChild(idxLabel);
-
-        const up = document.createElement('button');
-        up.className = 'qr-mini';
-        up.type = 'button';
-        up.textContent = '▲';
-        up.title = T.moveUp;
-        up.disabled = i === 0;
-        up.addEventListener('click', () => {
-          const tmp = draft.replies[i - 1];
-          draft.replies[i - 1] = draft.replies[i];
-          draft.replies[i] = tmp;
-          build();
-        });
-
-        const down = document.createElement('button');
-        down.className = 'qr-mini';
-        down.type = 'button';
-        down.textContent = '▼';
-        down.title = T.moveDown;
-        down.disabled = i === draft.replies.length - 1;
-        down.addEventListener('click', () => {
-          const tmp = draft.replies[i + 1];
-          draft.replies[i + 1] = draft.replies[i];
-          draft.replies[i] = tmp;
-          build();
-        });
-
-        const del = document.createElement('button');
-        del.className = 'qr-mini qr-del';
-        del.type = 'button';
-        del.textContent = '✕';
-        del.title = T.removeReply;
-        del.addEventListener('click', () => {
-          if (!window.confirm(T.removeConfirm)) return;
-          draft.replies.splice(i, 1);
-          if (!draft.replies.length) draft.replies.push({ icon: '💬', title: '', text: '' });
-          build();
-        });
-
-        cardHead.appendChild(up);
-        cardHead.appendChild(down);
-        cardHead.appendChild(del);
-        card.appendChild(cardHead);
-
-        const row = document.createElement('div');
-        row.className = 'qr-row';
-
-        const iconCol = document.createElement('div');
-        iconCol.className = 'qr-col-icon';
-        const iconLbl = document.createElement('label');
-        iconLbl.textContent = T.icon;
-        const iconInput = document.createElement('input');
-        iconInput.type = 'text';
-        iconInput.className = 'qr-icon-input';
-        iconInput.maxLength = 4;
-        iconInput.placeholder = T.iconPh;
-        iconInput.value = reply.icon || '';
-        iconInput.title = T.emojiPick;
-        iconInput.addEventListener('input', () => { reply.icon = iconInput.value; });
-        const iconBox = document.createElement('div');
-        iconBox.className = 'qr-icon-box';
-        const openPickerBtn = document.createElement('button');
-        openPickerBtn.className = 'qr-icon-open';
-        openPickerBtn.type = 'button';
-        openPickerBtn.textContent = '▾';
-        openPickerBtn.title = T.emojiPick;
-        const pick = (ev) => {
-          ev.preventDefault();
-          ev.stopPropagation();
-          openEmojiPicker(iconBox, (emoji) => {
-            reply.icon = emoji;
-            iconInput.value = emoji;
-          });
-        };
-        openPickerBtn.addEventListener('click', pick);
-        iconBox.appendChild(iconInput);
-        iconBox.appendChild(openPickerBtn);
-        iconCol.appendChild(iconLbl);
-        iconCol.appendChild(iconBox);
-
-        const titleCol = document.createElement('div');
-        titleCol.className = 'qr-col-title';
-        const titleLbl = document.createElement('label');
-        titleLbl.textContent = T.title;
-        const titleInput = document.createElement('input');
-        titleInput.type = 'text';
-        titleInput.maxLength = 40;
-        titleInput.placeholder = T.titlePh;
-        titleInput.value = reply.title || '';
-        titleInput.addEventListener('input', () => { reply.title = titleInput.value; });
-        titleCol.appendChild(titleLbl);
-        titleCol.appendChild(titleInput);
-
-        row.appendChild(iconCol);
-        row.appendChild(titleCol);
-        card.appendChild(row);
-
-        const field = document.createElement('div');
-        field.className = 'qr-field';
-        const textLbl = document.createElement('label');
-        textLbl.textContent = T.text;
-        const textarea = document.createElement('textarea');
-        textarea.placeholder = T.textPh;
-        textarea.value = reply.text || '';
-        textarea.addEventListener('input', () => { reply.text = textarea.value; });
-        field.appendChild(textLbl);
-        field.appendChild(textarea);
-        card.appendChild(field);
-
-        root.appendChild(card);
-      });
-
-      const addBtn = document.createElement('button');
-      addBtn.className = 'qr-add';
-      addBtn.type = 'button';
-      addBtn.textContent = T.addReply;
-      addBtn.addEventListener('click', () => {
-        draft.replies.push({ icon: '💬', title: '', text: '' });
-        build();
-      });
-      root.appendChild(addBtn);
-
-      /* --- Acciones ----------------------------------------------- */
-      const actions = document.createElement('div');
-      actions.className = 'qr-actions';
-      const saveBtn = document.createElement('button');
-      saveBtn.className = 'qr-save';
-      saveBtn.type = 'button';
-      saveBtn.textContent = T.save;
-      saveBtn.addEventListener('click', () => {
-        draft = JSON.parse(JSON.stringify(saveConfig(draft)));
-        build();
-        say(T.saved);
-      });
-      actions.appendChild(saveBtn);
-      root.appendChild(actions);
-
-      /* --- Copia de seguridad ------------------------------------- */
-      root.appendChild(document.createElement('hr')).className = 'qr-sep';
-
-      const dataH = document.createElement('h4');
-      dataH.textContent = T.dataHeading;
-      root.appendChild(dataH);
-
-      const dataHelp = document.createElement('p');
-      dataHelp.className = 'qr-help';
-      dataHelp.textContent = T.dataHelp;
-      root.appendChild(dataHelp);
-
-      const ioActions = document.createElement('div');
-      ioActions.className = 'qr-actions';
-
-      const exportBtn = document.createElement('button');
-      exportBtn.className = 'qr-io';
-      exportBtn.type = 'button';
-      exportBtn.textContent = T.exportBtn;
-      exportBtn.addEventListener('click', () => { exportConfig(draft); say(T.exported); });
-
-      const importBtn = document.createElement('button');
-      importBtn.className = 'qr-io';
-      importBtn.type = 'button';
-      importBtn.textContent = T.importBtn;
-
-      const fileInput = document.createElement('input');
-      fileInput.type = 'file';
-      fileInput.accept = 'application/json,.json';
-      fileInput.style.display = 'none';
-      importBtn.addEventListener('click', () => fileInput.click());
-      fileInput.addEventListener('change', () => {
-        const file = fileInput.files && fileInput.files[0];
-        fileInput.value = '';
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = () => {
-          try {
-            const parsed = JSON.parse(String(reader.result));
-            if (!parsed || (typeof parsed !== 'object' && !Array.isArray(parsed))) throw new Error('bad');
-            if (!Array.isArray(parsed) && !Array.isArray(parsed.replies)) throw new Error('bad');
-            draft = JSON.parse(JSON.stringify(saveConfig(migrateConfig(parsed))));
-            build();
-            say(T.imported);
-          } catch (e) {
-            say(T.importError, 'err');
-          }
-        };
-        reader.onerror = () => say(T.importError, 'err');
-        reader.readAsText(file);
-      });
-
-      const resetBtn = document.createElement('button');
-      resetBtn.className = 'qr-reset';
-      resetBtn.type = 'button';
-      resetBtn.textContent = T.reset;
-      resetBtn.addEventListener('click', () => {
-        if (!window.confirm(T.resetConfirm)) return;
-        draft = JSON.parse(JSON.stringify(saveConfig(defaultConfig())));
-        build();
-        say(T.restored);
-      });
-
-      ioActions.appendChild(exportBtn);
-      ioActions.appendChild(importBtn);
-      ioActions.appendChild(resetBtn);
-      ioActions.appendChild(fileInput);
-      root.appendChild(ioActions);
+      root.appendChild(el('div', { cls: 'qr-actions' }, [
+        el('button', {
+          cls: 'qr-io', type: 'button', text: T.exportBtn,
+          on: { click: () => { exportConfig(draft); say(T.exported); } }
+        }),
+        el('button', {
+          cls: 'qr-io', type: 'button', text: T.importBtn,
+          on: { click: () => file.click() }
+        }),
+        el('button', {
+          cls: 'qr-reset', type: 'button', text: T.reset,
+          on: { click: () => {
+            if (window.confirm(T.resetConfirm)) commit(defaultConfig(), T.restored);
+          } }
+        }),
+        file
+      ]));
 
       root.appendChild(status);
     }
@@ -1437,7 +1105,7 @@
   }
 
   function exportConfig(cfg) {
-    const data = normalizeConfig(JSON.parse(JSON.stringify(cfg)));
+    const data = normalizeConfig(clone(cfg));
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
